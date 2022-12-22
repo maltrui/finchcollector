@@ -19,13 +19,25 @@ def finches_index(request):
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
     food_form = FoodForm()
-    return render(request, 'finches/detail.html',{ 'finch': finch, 'food_form': food_form})
+    id_list = finch.twigs.all().values_list('id')
+    twigs_finch_doesnt_have = Twig.objects.exclude(id__in=id_list)
+    return render(request, 'finches/detail.html',{ 'finch': finch, 'food_form': food_form, 'twigs': twigs_finch_doesnt_have})
+
 def add_food(request, finch_id):
     form = FoodForm(request.POST)
     if form.is_valid():
         new_food = form.save(commit=False)
         new_food.finch_id = finch_id
         new_food.save()
+    return redirect('detail', finch_id=finch_id)
+
+def assoc_twig(request, finch_id, twig_id):
+    Finch.objects.get(id=finch_id).twigs.add(twig_id)
+    return redirect('detail', finch_id=finch_id)
+
+def unassoc_twig(reqest, finch_id, twig_id):
+    finch = Finch.objects.get(id=finch_id)
+    finch.twigs.remove(twig_id)
     return redirect('detail', finch_id=finch_id)
 
 class FinchCreate(CreateView):

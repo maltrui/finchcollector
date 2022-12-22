@@ -32,7 +32,7 @@ class Finch(models.Model):
     breed = models.CharField(max_length=200)
     description = models.TextField(max_length=300)
     age = models.IntegerField()
-
+    twigs = models.ManyToManyField(Twig)
     def __str__(self):
         return f'{self.name} ({self.id})'
     def get_absolute_url(self):
