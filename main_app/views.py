@@ -57,4 +57,4 @@ class TwigUpdate(UpdateView):
 
 class TwigDelete(DeleteView):
     model = Twig
-    success = '/twigs/'
+    success_url = '/twigs/'

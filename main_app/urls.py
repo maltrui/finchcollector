@@ -14,5 +14,5 @@ urlpatterns = [
     path('twigs/<int:pk>/', views.TwigDetail.as_view(), name='twig_details'),
     path('twigs/create/', views.TwigCreate.as_view(), name='twigs_create'),
     path('twigs/<int:pk>/update/', views.TwigUpdate.as_view(), name='twig_update'),
-    path('twig/<int:pk>/update/', views.TwigDelete.as_view(), name='twig_delete')
+    path('twigs/<int:pk>/delete/', views.TwigDelete.as_view(), name='twig_delete')
 ]

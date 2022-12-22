@@ -11,6 +11,10 @@
             <p>Color: {{ twig.color }}</p>
             <p>Size: {{ twig.size }}</p>
         </div>
+        <div class="card-action">
+            <a href="{% url 'twig_update' twig.id %}">Edit</a>
+            <a href="{% url 'twig_delete' twig.id %}">Delete</a>
+        </div>
     </div>
   </a>
 {% endfor %}
