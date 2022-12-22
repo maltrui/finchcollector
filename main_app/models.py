@@ -10,6 +10,22 @@ ENJOYMENT = (
     ('Y', 'They enjoyed the meal'),
     ('N', 'They did not enjoy the meal')
 )
+SIZE = (
+    ('S', 'Small'),
+    ('M', 'Medium'),
+    ('L', 'Large')
+)
+class Twig(models.Model):
+  name = models.CharField(max_length=100)
+  color = models.CharField(max_length=50)
+  size = models.CharField(max_length=1,choices=SIZE,default=SIZE[1][0])
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('twig_details', kwargs={'pk': self.id})
+
 
 class Finch(models.Model):
     name = models.CharField(max_length=200)

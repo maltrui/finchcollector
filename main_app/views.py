@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Finch
+from django.views.generic import ListView, DetailView
+from .models import Finch, Twig
 from .forms import FoodForm
 
 def home(request):
@@ -39,3 +40,21 @@ class FinchUpdate(UpdateView):
 class FinchDelete(DeleteView):
     model = Finch
     success_url = '/finches/'
+
+class TwigList(ListView):
+    model = Twig
+
+class TwigDetail(DetailView):
+    model = Twig
+
+class TwigCreate(CreateView):
+    model = Twig
+    fields = '__all__'
+
+class TwigUpdate(UpdateView):
+    model = Twig
+    fields = '__all__'
+
+class TwigDelete(DeleteView):
+    model = Twig
+    success = '/twigs/'
