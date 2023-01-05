@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+import os
+import environ
+environ.Env()
+environ.Env.read_env()
 
 # Application definition
 
@@ -77,7 +82,11 @@ WSGI_APPLICATION = 'finchcollector.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'finchcollector',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_NAME'],
+        'PASSWORD':os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_SERVER'],
+        'PORT': 5432,
     }
 }
 
