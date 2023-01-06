@@ -7,7 +7,7 @@ from .models import Finch, Twig
 from .forms import FoodForm
 
 def home(request):
-    return HttpResponse('<h1>Home</h1>')
+    return render(request, 'home.thml')
 
 def about(request):
     return render(request, 'about.html')
